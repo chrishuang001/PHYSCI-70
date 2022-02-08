@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<title>PHYSCI 70: Intro to Digital Fabrication </title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../style.css" rel="stylesheet">
+
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div style="align-items: left; justify-content:left;" class="container-fluid">
+    <h3 style="margin: 15px"> PHYSCI 70: Intro to Digital Fabrication</h3>
+    <div class="navbar-nav">
+      <h4></h4>
+      <h4><a class="nav-link" href="../index.html">Home</a></h4>
+      <h4><a class="nav-link" href="../about.html">About</a></h4>
+    </div>
+  </div>
+</nav>
+
+<body>
+
+
+<xmp theme="journal" style="display:none;">
+
+
+
+  ### Week 2: Introduction into Fusion360 + Electronics
+
+  This week we got an introduction to Computer Assisted Design with Fusion360. This was my first time using this type of software, so it was a bit tricky. However, I found it easier after watching a few tutorials and focusing only on figuring out the tools necessary to make a specific object. Having a goal in mind makes the complexity get easier to manage. 
+
+  ![image of Fusion360 logo](./fusion-360.png)
+
+  In particular, I attempted to model a shampoo container and a tissue box. Here are the results:
+
+  ![image of Shampoo](./shampoo.png)
+  ![image of tissue box](./tissue_box.png)
+
+  We also learned about press-fit construction. By creating sketches in Fusion360, we can precisely laser cut pieces of cardboard in such a way that they fit together into a construction—no glue or tape necessary!
+
+
+  I wanted to create a construction of a dinosaur, specifically a brachiosaurus (the giraffe looking one). The inspiration for the design came after extensive google searching and eventually stumbling across this puzzle set.
+
+  ![image of inspiration design](./inspiration.jpg)
+
+  There is only one image of the kit, but the simple design is easy to understand and replicate myself (why spend $24.95 before tax when you can use a laser printer?). I went into Fusion360 and started a new project. From there, I created separate sketches for each part I needed. In my case, I needed one main body which includes the neck and head, two identical side pieces to represent the legs, and two connection pieces to orthogonally connect the pieces together. 
+
+  To achieve the design, I primarily used the fit point spline to draw the design of the dinosaur, giving my best artist rendition of a brachiosaurus. Afterward, I created my notches using offsets. It was important to incorporate parametric design to scale the notches. This is because I needed to incorporate factors such as the width of the cardboard and the kerf when setting the measurements of the notches. Using parameters makes these measurements easy to adjust as I did not know the exact width of the cardboard or kerf of the laser cutting when making the design. 
+
+  This is what is looks in Fusion 360:
+
+  ![image of fusion360 sketch](./dino_sketch.png)
+
+
+  From there, I extruded the parts I wanted and exported to a dxf file to load into the laser cutter. After some cutting and adjustments, this is the final product:
+
+
+
+</xmp>
+</body>
+
+<script src="https://strapdownjs.com/v/0.2/strapdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+
+</html>

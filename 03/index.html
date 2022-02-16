@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<title>PHYSCI 70: Intro to Digital Fabrication </title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../style.css" rel="stylesheet">
+
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div style="align-items: left; justify-content:left;" class="container-fluid">
+    <h3 style="margin: 15px"> PHYSCI 70: Intro to Digital Fabrication</h3>
+    <div class="navbar-nav">
+      <h4></h4>
+      <h4><a class="nav-link" href="../index.html">Home</a></h4>
+      <h4><a class="nav-link" href="../about.html">About</a></h4>
+    </div>
+  </div>
+</nav>
+
+<body>
+
+
+<xmp theme="journal" style="display:none;">
+
+
+
+  ### Week 3: Kinetic Sculpture
+
+  This week we were tasked with the assignment of making a kinetic sculpture with ample room for artist interpretation.
+
+  Running with what appears to be the common theme of me using technology to do things I cannot (all for the far away dream of one day automating myself to the point of being obsolete), I decided to make a kinetic sculpture to spin a pen around my finger.
+
+  ![pen spinning](./pen_spin.gif)
+
+  I purchased a manequinn hand off Amazon, however two-day deliver lied to me and it is now my forth day without a hand; thus, my own fleshy appendage will have to be the substitute for now.
+
+  ![two day shipping](./2day.png)
+
+  I whipped up a design with some rough sketching and then modeled it using Fusion 360. The design idea is to have a static ring construction that can be fitted onto a finger and then a free moving gear in the center attatched to another piece on which a pen can be attatched to.
+
+  ![mockup1](./Scrap-8.jpg)
+  ![mockup2](./Scrap-6.jpg)
+  ![mockup3](./Scrap-7.jpg)
+
+  ![fusion360 design](./fusion360.png)
+
+  From there I laser cut the parts on cardboard to make a prototype (in retrospect, cardboard is not great for gears) and this is how the basic mechanism works. One mistake I made is not accounting for kerf, so the pieces were smaller than intended. To remedy this, I wrapped the center shaft with tape to increase its diameter and reduce the slack with the gear.
+
+  ![cardboard pieces](./cardboard.jpeg)
+  ![cardboard gif](./cardboard.gif)
+
+  I then redid the printing with acrylic instead to have a more solid construction with smoother movement.
+
+  ![acrylic construction](./acrylic.gif)
+
+  Now came the painstaking process of transitioning flawless ideas in your head to the real, cruel world.
+
+  When implementing/constructing the actual mechanism, I ran into many small and unforseen challenges that had to be overcome. Once again, due to imperfect kerf accounting and not wanting to churn through acrylic for prototypign, there was too much space between the shaft and the gear. I used the same tape wrapping technique to fix this. In addition, as the thickness of the acrylic was constant with all the pieces, the sandwiched pieces were too tight to allow the center gear to spin, so I sanded down the pieces to get some free space to spin. It was a challenge to combine the pieces of acrylic with glue (the entire construction broke at a point and required resassembly), my motor went missing so I got more practice soldering another motor, and finally figuring out how to attatch the motor and the pen was solved crudely with hot glue and spirit.  
+
+  After many, many attempts and failures with this simple concept, it worked after the nth time. Now here is the final marvelous product (presented at roughly 3 frames per second):
+
+  ![final video of working spin](./finalspin.gif)
+
+
+
+</xmp>
+</body>
+
+<script src="https://strapdownjs.com/v/0.2/strapdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+
+</html>

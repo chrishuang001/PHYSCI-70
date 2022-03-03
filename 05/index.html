@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<title>PHYSCI 70: Intro to Digital Fabrication </title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../style.css" rel="stylesheet">
+
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div style="align-items: left; justify-content:left;" class="container-fluid">
+    <h3 style="margin: 15px"> PHYSCI 70: Intro to Digital Fabrication</h3>
+    <div class="navbar-nav">
+      <h4></h4>
+      <h4><a class="nav-link" href="../index.html">Home</a></h4>
+      <h4><a class="nav-link" href="../about.html">About</a></h4>
+    </div>
+  </div>
+</nav>
+
+<body>
+
+
+<xmp theme="journal" style="display:none;">
+
+
+
+  This week, we went into the magical world of 3D printing–the alluring zone of infinite possibilities. However, to burst the bubble of the lay people (which was me), it turns out 3D printing is not the holy grail to replace all our fabrication needs. There are definite pros and cons to the usage of 3D printing, and not all designs are best brought into reality by the use of a 3D printer. The analogy we were given in class was that having a 3D printer in a workspace is like having a microwave in a kitchen: it is very handy and versatile to have, but if you only use a microwave, you’re a pretty horrible chef (I have the decency to at least make my instant ramen in a pot). 
+
+  Thus, I made my first 3D print something that would not be easily made using standard machining processes. A lot of the methods we have learned so far such as using a laser cutter, mill, saw, etc. are subtractive processes, meaning we take a piece of material and then take away material to get our desired product. 3D printing is an additive process which means it only builds up material to the design we want (in addition to supports). This means that 3D printing is a good candidate for designs where subtracting material would be wasteful or the part that needs to be subtracted is in a difficult place to reach. 
+  
+  Here comes the design I came up with that would be good for 3D printing use:
+  
+  ![fusion360 images](./fusion1.png)
+  ![fusion360 images](./fusion2.png)
+
+  
+  This features a regular torus. Producing this with subtractive methods is not impossible but it would require cutting away a fair amount of material and also the method for precisely creating the rounded shape is not possible at least within my ability. The best I would be able to do is create a disk with a laser cutter and then manually sand the piece round.
+  
+  The part where the 3D printer really shows its abilities is the extrusion of my initials I placed on the inner side of the torus. This production for a 3D printer is rather trivial and only requires a few support structures to be broken off to create. On the other hand, I think this would be nearly impossible to create with subtractive methods due to the complexity of reaching the inner side of the doughnut with any machine or tool. 
+  
+  With a good design in hand, I uploaded the model into PrusaSlicer, and set up the print file to include some supports:
+  
+  ![prusa image](./prusa.png)
+
+  
+  Then I loaded the file onto the 3D printer and it started printing away. This led to the realization of one of the biggest drawbacks of 3D printing: the production time. Even for a very small piece like this, the print time was about 1 hour and 40 minutes. I would expect larger pieces to take much, much longer. If one is crunched for time, the 3D printer may prove to be a limiting factor for the speed you can prototype even for all its versatility. And it would seem with this speed, 3D printing would most likely be limited to prototyping and be infeasible for any large scale production, bar a few special circumstances.
+  
+  ![gif of 3d Printing](./printing.gif)
+
+  And this is the final product! Pretty nice if I say so myself!
+
+  ![final product](./final.gif)
+
+  
+  Plus: Here is a scan of a penguin. This was created by an app called ___, which generates the 3D model after viewing an object
+  
+
+
+  Files for this design:
+
+  <a download href='./Body.stl'>Download my STL</a>
+
+  <a download href='./Chris_initial_ring.gcode'>Download my Gcode</a>
+
+</xmp>
+</body>
+
+<script src="https://strapdownjs.com/v/0.2/strapdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+
+</html>

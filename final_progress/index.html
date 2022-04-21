@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<title>PHYSCI 70: Intro to Digital Fabrication </title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../style.css" rel="stylesheet">
+
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div style="align-items: left; justify-content:left;" class="container-fluid">
+    <h3 style="margin: 15px"> PHYSCI 70: Intro to Digital Fabrication</h3>
+    <div class="navbar-nav">
+      <h4></h4>
+      <h4><a class="nav-link" href="../index.html">Home</a></h4>
+      <h4><a class="nav-link" href="../about.html">About</a></h4>
+    </div>
+  </div>
+</nav>
+
+<body>
+
+
+<xmp theme="journal" style="display:none;">
+
+  <b>Ultimate Task:</b> Create a machine that can draw or paint some abstraction of a picture
+
+  <b>Current plan:</b> Start by creating the simplest design first, then increase the complexity iteratively
+  
+  <b>Two main aspects:</b> Software and Hardware
+  
+  <b>First draft software design:</b>
+  <ul>
+    <li>
+      <b>The desired outcome:</b> take an image and generate a series of strokes to feed into a physical machine
+    </li>
+    <li>
+      <b>Plan of action:</b> train a model with reinforcement learning
+    </li>
+    <li>
+      The environment will be a canvas where the model can place strokes (bezier curves?)
+    </li>
+    <li>
+      Train on a dataset of portraits (https://www.kaggle.com/datasets/deewakarchakraborty/portrait-paintings)
+    </li>
+    <li>
+      Rationale → it would be less exciting to simply train a model to closely replicate an image as then it would turn out to be a low-quality printer; rather, it would be more exciting for an artist abstraction to be constructed
+    For actual usage, we will run the input image through a style transfer to match the artistic style of the training images
+    </li>
+
+  </ul>
+  
+  <b>Reinforcement model</b>
+
+  <ul>
+  
+    <li>
+      Input image: portrait
+    </li>
+    <li>
+      Action space: put down x strokes on a canvas
+    </li>
+    <li>
+      Ground truth comparison: the same input portrait  
+    </li>
+  </ul>
+  
+  
+  <b>First draft hardware design:</b>
+  <ul>
+    <li>
+      Use Nathans 3D printed H-Bot design
+      https://nathanmelenbrink.github.io/ps70/12_machine/machines.html
+    </li>
+    <li>
+      Attach a black marker to the end
+    </li>
+  </ul>
+    
+    
+  
+
+</xmp>
+</body>
+
+<script src="https://strapdownjs.com/v/0.2/strapdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<title>PHYSCI 70: Intro to Digital Fabrication </title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../style.css" rel="stylesheet">
+
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div style="align-items: left; justify-content:left;" class="container-fluid">
+    <h3 style="margin: 15px"> PHYSCI 70: Intro to Digital Fabrication</h3>
+    <div class="navbar-nav">
+      <h4></h4>
+      <h4><a class="nav-link" href="../index.html">Home</a></h4>
+      <h4><a class="nav-link" href="../about.html">About</a></h4>
+    </div>
+  </div>
+</nav>
+
+<body>
+
+
+<xmp theme="journal" style="display:none;">
+
+  Week 8 Write up
+
+  For this week, I tried out two new processes I have never done before!
+  
+  The first is molding and casting. Molding involves creating a negative of some object or shape (usually out of silicon), and casting involves using that mold we just made and filling the negative with some viscous material that will cool and harden into a solid.
+  
+  I started by finding something I wanted to create a mold with. In this case, I chose this tiny ramen bowl keychain to act as the positive for the mold:
+  
+  ![Ramen Bowl](./ramenbowl.jpeg)
+
+  Next, I created this small set-up with clay attached to a tongue depressor. The point of this is to secure the object during the curing process of the silicone mold. In addition, you use the clay to create openings in the mold for the casting material to be poured in. The additional opening serves as a vent hole for air to escape as the casting material is added.
+  
+  ![setup](./setup.jpeg)
+  ![setup](./setup2.jpeg)
+
+  Now, it is time to create the mold. I used SORTA Clear 37 Silicone as it is food safe, which will come in handy later. This process is very simple, there are two different solutions that you mix in equal parts, then pour into the cup. I noticed that there was a tremendous amount of bubbles form, which is less than ideal. 
+  
+  ![cast](./cast.jpeg)
+  
+  Anyhow, I left it to cure overnight and painfully extracted the original ramen bowl from the mold. This proved to be extremely difficult as the metallic ring of the keychain got completed entrapped by the silicon, and it was sadly broken off and remains in the mold to this day.
+
+
+
+  Now for the casting. I choose to cast in chocolate (because that is more fun). I generously received a chocolate bar donation from Michael. From there, I chose not to use the toaster oven that has just heated up bismuth and instead used the microwave in my dorm. I microwaved the chocolate in short bursts and mixed it in between to acquire melted chocolate to pour into the mold. 
+  
+  ![chocolate](./melted.jpeg)
+  ![cooling](./cooling.jpeg)
+
+  A quick solidification in the refrigerator later and….
+  
+  ![final cast](./finalcast.jpeg)
+  
+  Ta-dah?
+  
+  
+  Well, it didn’t turn out that great, a part of the ramen bowl is cut off, but it is okay. We roll with the punches. For the next molding and casting project, I would pay more attention to the clay setup when creating the mold. The way I did it this time made the pour pretty awkward and the orientation of the clay covered up a fair chunk of the detail on the ramen bowl.
+  
+  Anyhow, moving on to the more exciting CNC section of this week’s assignment:
+  
+  CNC stands for Computer Numerical Control. Essentially, it just means we can use computers to be extremely precise in machining out designs. For my CNC portion, I decided to use this innovative piece of technology: The Shaper!
+  
+  ![stock image of shaper](./stockshaper.jpg)
+  ![shaper](./shaper.jpeg)
+
+  The Shaper is an “easy-to-use”, hand-held CNC router that allows one to bring precision cutting anywhere they go. This is great for milling out larger pieces which would not fit on the bed of a smaller CNC machine or as an alternative to regular CNC needs. 
+  
+  I decided to make a simple sword with this SVG design. This design is straight forward with only three separate pieces and is a good fit for the Shaper as the size of the cuts are larger than what can be fit on our lab CNC machines.
+
+  (source: https://hub.shapertools.com/creators/5d5d70a079a38a000faca883/shares/5fa2c67227b8d60010ac566c)
+
+  First, I got some material, OSB, in the exact dimensions specified by the designer (horrible mistake that will be revealed later), courtesy of the nice people in the demo lab.
+  
+  In theory, this is how you use the Shaper:
+  <ul>
+    <li>
+      Set up strips of tape on the material you intend to cut
+    </li>
+    <li>
+      Scan the area by slowly gliding the shaper over the material as it takes pictures and constructs a virtual workspace
+    </li>
+    <li>
+      Add and orient designs on the virtual workspace
+    </li>
+    <li>
+      Then, you can start removing material by turning on the bit and following the shapes of the cuts. The Shaper will do the fine adjustments to get the cuts done precisely even if you do not move it very accurately. In the case you move too much outside the cut pather, the shaper will automatically retract to prevent the removal of any unintended material
+    </li>
+    <li>
+      Simple, innovative, and easy!
+    </li>
+  </ul>
+
+  ![overview](./overview.jpeg)
+  ![scan](./scan.jpeg)
+
+
+  If only life was that easy. I rue the day I was so naive to believe so.
+  
+  With my experience, the Shaper was an absolute horror to use.
+  
+  First issue, the tape. Absolutely horrendous; rips very easily as being unrolled. It also does not stick. My suspicions that the manufacturer accidentally replaced the adhesive with an antistick solution to torture poor PHYSCI70 students grew more certain as I spent ages wrestling with the tape. (According to Gabby, OSB is also a very bad surface for taping which did not help)
+  
+  I used extra tape to actually adhere the marking tape to the material, to limited success:
+  
+  ![tape on tape](./tape.jpeg)
+  
+  This was not a great solution as the unsecured tape will move during cutting which deteriorates the scan and stops the bit.
+  
+  The cutting of the crossguard went relatively smoothly. However, the movement of the tape and initial poor scan stopped the Shaper from cutting the main part of the blade midway through. This was becasue the Shaper simply did not have a good enough idea of its position to safely cut. 
+  
+  I could not move on from this point so let’s restart.
+  
+  I used another piece of OSB and set up the tape much more nicely–literally painted on liquid glue to the tape to actually secure it onto the board. The scan quality was a little better this time, and while spotty at times, the cut was able to be completed 50% to completion with little hassle.
+  
+  
+  Towards the end of the blade, roughly a foot from the end,, the Shaper stopped cutting because it was approaching the end of the scan space. In the end, my naivety of trusting the dimension of material from the project page and attempt to be economical stabbed me in the back. 
+  
+  It’s okay, with a little ingenuity and rescanning, I tricked the Shaper to let me cut by using the previous attempt with some more tape to extend the perceived scan area, and I finished the cut
+  
+  ![genuis](./ingenuity.jpeg)
+
+  Now for the second blade part, it worked about 50% of the way before the scan degraded too much to allow the Shaper to continue. I assume it was a combination of the dust smudging the surface and the previous cut destroying some of the tape.
+  
+  It is okay however, we know when to stop and improvise. One part was actually sufficient to finish the project; it actually would've been oddly thick if two pieces were used, so we roll with the punches.
+  
+  The idea is to jam the two pieces together. Thought they would fit initially but nothing that can’t be fixed with some aggressive filing.
+  
+  ![cutout](./cutout.jpeg)
+  ![jamming](./almost.jpeg)
+
+  Put 1 and 1 together and ta-da!
+  
+  ![final sword](./final1.jpeg)
+  
+  For extra style points, took some canvas and wrapped it around the hilt, so you didn’t have to hold onto some rough OSB And this is the final result! 
+  
+  ![final sword](./final2.jpeg)
+  
+  (Let’s ignore the fact that it took me five hours to only cut out two pieces of material)
+  
+  General tips to avoid my torture:
+  <ul>
+    <li>
+      <b>The foundation of a successful operation with the Shaper tool is a very good scan.</b> The tape should be secured and not move during cutting (do what you must to fight the anti-stick tape). If possible, try to avoid having tape in areas where the Shaper will cut through as that will deteriorate the scan as the cutting proceeds.
+    </li>
+    <li>
+      <b>Use more material and tape up a greater area than necessary.</b>v> Try to be less frugal with material as the scan requires extra room to properly construct the virtual space. If the Shaper is getting too close to the edge of the scanned area, then it will automatically stop.
+    </li>
+    <li>
+      <b>Definitely set up the vacuum tube. </b>Besides small benefits such as breathing in less dust and having healthier lungs, it is critical to maintain the quality of the computer vision system during the cuts. If the Shaper cannot have a good sense of its position relative to the tape, it will not cut. This means any dust will smudge and cover up the tape, leading to the Shaper not being happy.
+    </li>
+  </ul>
+  
+
+  
+</xmp>
+</body>
+
+<script src="https://strapdownjs.com/v/0.2/strapdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+
+</html>

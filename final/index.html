@@ -21,7 +21,305 @@
 
 
 <xmp theme="journal" style="display:none;">
+  <b>Final Project</b>
 
+  Perhaps it is the most common tale with aspiring creatives.
+  
+  The rational ability to know one is being overambitious, the mutual recognition of impossibility with your constraints, whether it be short on time, material, knowledge, or all of the above–and the universality of the crushing sensation of reality. 
+  
+  It’s poetic really.
+  
+  A perpetual cycle of Icarus flying too close to the sun.
+  
+  This is the story of my lofty visions and the humble but proud results I came to create.
+  
+  <b>The overzealous plan:</b>
+  
+  
+  It’s going to be incredible, and it’s going to pull out all the stops. I am imagining a sophisticated deep learning reinforcement algorithm to artistically take an image and generate a series of careful and deliberate paint strokes, there’s going to be a six-axis robotic arm to hold a paintbrush and convert the algorithm’s product into efficient and powerful strokes on a real canvas, there’s going to be an advance paint mixing functionality to determine the exact colors needed in the most economical manner, there’ll be the accidental discovery of 90% efficient photovoltaic cell while I’m playing with sensors, an envelope of hundred dollar bills will be accidentally sent to my mailbox, I’ll have one last growth spurt I swear the doctor said it’s possible until your early twenties–oh wait, got a tiny bit carried away there. 
+  
+  Yeah, let us reign in these wild delusions. What is infinitely more useful than a bunch of fantastical, far-fetched ideas is a single simple manifestation of an idea in the real world. Once I have a minimum product, I can always iterate and improve from there on!
+  
+  So I reduced everything into the simplest forms to work and then figured it out from there.
+  
+  There are three main components of this project
+  <ul>
+    <li>
+      The software: an algorithm to take an image and converts it into some series of strokes
+    </li>
+    <li>
+      The hardware: machine to physically translate the motion of markers or
+    </li>
+    <li>
+      The in-between: a system to convert the abstract strokes from the software into actual directions for the hardware to carry out those ideas.
+    </li>
+  </ul>
+  
+  Along the way a few simplifications were made:
+  <ul>
+    <li>
+      Paints are too complicated for a first prototype–paints are messy, it requires mixing, and holding a paintbrush is much more difficult–a definite no go. We switched to markers.
+    </li>
+    <li>
+      Complex neural networks to emulate Rembrandt may be too much, instead focus on low stroke count abstractions that may be a bit janky
+    </li>
+    <li>
+      A robotic arm would definitely be overkill and infeasible at this point. We will use the H-bot drawing machine instead.
+    </li>
+  </ul>
+  
+  As such, now let us detail the construction of this project in the three components I listed
+  
+  <b>Software:</b>
+  For the software, I adapted code by Austin Nguyen and his incredible article on using ML to “hand” draw pictures.
+  https://towardsdatascience.com/how-i-used-machine-learning-to-automatically-hand-draw-any-picture-7d024d0de997
+  
+  Specifically, I made use of his code which takes and image and finds the edges from the image. Then, a simple ML algorithm is used to construct a series of efficient strokes to implement the outline.
+  
+  ![](./old.jpg) 
+  ![](./olddraw.png) 
+
+  
+  Practically, the end result is essentially Gcode where its a giant list of coordinates interspersed with “UP” and “DOWN” denoting if the pen/paintbrush should go up or down at that action.
+  
+  <b>Hardware:</b>
+  
+  I detailed the entirety of the H-bot construction in Week 10.
+  
+  Here is a quick gallery of images working through the process:
+  
+  ![](./bearings.jpeg) 
+  ![](./14.jpeg) 
+  ![](./wiring.jpeg) 
+  ![](./stringon.jpeg) 
+
+  
+  An addition needed to be constructed to hold the sharpie during the drawing process. Following my lack of success working with the solenoid and due to time constraints, I was not able to create a more sophisticated system to move the pen up and down. As such, we settled for just having the sharpie down at all times.
+  
+  To do this, I used only the most advanced fabrication techniques in existence:
+  
+  ![](./pen.jpeg) 
+
+  <b>The in-between:</b>
+  
+  So right now we have a set of coordinates and two stepper motors to control. In order to do the conversion between coordinates and the right rate of pulses to give to each motor to achieve that coordinate translation, some math needs to be done.
+  
+  The solution is actually quite elegant in my opinion and here is a summary of it:
+  
+  ![](./math.jpg) 
+  <pre>
+    <code>
+      
+const int speed_damp = 2;
+
+int current_x = 0;
+int current_y = 0;
+
+int delay_A;
+int delay_B;
+
+int count_pulse_A = 0;
+int count_pulse_B = 0;
+
+
+class move_A
+{
+  // Class Member Variables
+  // These are initialized at startup
+  int stepPin;
+  int dirPin;
+
+  // These maintain the current state
+  int stepState;                 // ledState used to set the LED
+  unsigned long previousMillis;   // will store last time LED was updated
+
+  // Constructor - creates a Flasher 
+  // and initializes the member variables and state
+  public:
+  move_A(int stepP, int dirP)
+  {
+    stepPin = stepP;
+    dirPin = dirP;
+    pinMode(stepPin, OUTPUT);
+    pinMode(dirPin, OUTPUT);
+  
+    previousMillis = 0;
+    stepState = LOW;
+  }
+
+  void Update()
+  {
+    // check to see if it's time to change the state of the LED
+    unsigned long currentMillis = millis();
+     
+    if((count_pulse_A < 0) && (currentMillis - previousMillis >= delay_A))
+    {
+      previousMillis = currentMillis;  // Remember the time
+      digitalWrite(dirPin, HIGH);
+      if (stepState == HIGH)
+      {
+        digitalWrite(stepPin, LOW);
+      }
+      else
+      {
+        digitalWrite(stepPin, HIGH);
+      }
+      count_pulse_A++;
+      
+    }
+    else if ((count_pulse_A > 0) && (currentMillis - previousMillis >= delay_A))
+    {
+      previousMillis = currentMillis;   // Remember the time
+      digitalWrite(dirPin, LOW);
+      if (stepState == HIGH)
+      {
+        digitalWrite(stepPin, LOW);
+      }
+      else
+      {
+        digitalWrite(stepPin, HIGH);
+      }
+      count_pulse_A--;
+    }
+    Serial.println(count_pulse_A);
+  }
+};  
+
+
+class move_B
+{
+  // Class Member Variables
+  // These are initialized at startup
+  int stepPin;
+  int dirPin;
+
+  // These maintain the current state
+  int stepState;                 // ledState used to set the LED
+  unsigned long previousMillis;   // will store last time LED was updated
+
+  // Constructor - creates a Flasher 
+  // and initializes the member variables and state
+  public:
+  move_B(int stepP, int dirP)
+  {
+    stepPin = stepP;
+    dirPin = dirP;
+    pinMode(stepPin, OUTPUT);
+    pinMode(dirPin, OUTPUT);
+  
+    previousMillis = 0;
+    stepState = LOW;
+  }
+
+  void Update()
+  {
+    // check to see if it's time to change the state of the LED
+    unsigned long currentMillis = millis();
+     
+    if((count_pulse_B < 0) && (currentMillis - previousMillis >= delay_B))
+    {
+      previousMillis = currentMillis;  // Remember the time
+      digitalWrite(dirPin, HIGH);
+      if (stepState == HIGH)
+      {
+        digitalWrite(stepPin, LOW);
+      }
+      else
+      {
+        digitalWrite(stepPin, HIGH);
+      }
+      count_pulse_B++;
+      
+    }
+    else if ((count_pulse_B > 0) && (currentMillis - previousMillis >= delay_B))
+    {
+      previousMillis = currentMillis;   // Remember the time
+      digitalWrite(dirPin, LOW);
+      if (stepState == HIGH)
+      {
+        digitalWrite(stepPin, LOW);
+      }
+      else
+      {
+        digitalWrite(stepPin, HIGH);
+      }
+      count_pulse_B--;
+    }
+  }
+};
+
+move_A A(12, 13);
+move_B B(33, 27);
+
+
+void move(int new_x, int new_y) {
+  // function a specific x and y
+  int dx = new_x - current_x;
+  int dy = new_y - current_y;
+
+  current_x = new_x;
+  current_y = new_y;
+
+  int m1 = dx + dy;
+  int m2 = dx - dy;
+
+  int period = sqrt(dx*dx + dy*dy) * speed_damp;
+
+  delay_A = abs(period / m1);
+  delay_B = abs(period / m2);
+
+  count_pulse_A = m1;
+  count_pulse_B = m2;
+}
+
+void setup() {
+  Serial.begin(9600);
+  move(0, -20);
+}
+
+int step_number = 0;
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  A.Update();
+  B.Update();
+
+  if (step_number == 1){
+    move(0, 0);
+  }
+  else if (step_number == 2){
+    move(20,0);
+  }
+  else if (step_number == 3){
+    move(0,0);
+  }
+
+  if (count_pulse_A == 0)
+  {
+    step_number++;
+  }
+}
+    </code>
+  </pre>
+  
+  <b>Result:</b>
+  
+  <collection of gif>
+
+  ![](./final.jpeg) 
+  
+  In the end, the project did not turn out precisely how I intended. The physical machine is too imprecise to actually translate the actual coordinates and the code crashes after a few strokes due to some overflow error I cannot pin down.
+ 
+  ![](./1.gif) 
+  ![](./2.gif) 
+ 
+  However, I was lucky enough for the motion to be chaotic enough to generate some interesting drawings, so I was able to set up a nice little gallery and present my humble work.
+  ![](./gallery.jpeg) 
+
+  <final image>
+  ![](./happy.jpeg) 
+
+  
   
 
 </xmp>

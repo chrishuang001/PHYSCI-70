@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<title>PHYSCI 70: Intro to Digital Fabrication </title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../style.css" rel="stylesheet">
+
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div style="align-items: left; justify-content:left;" class="container-fluid">
+    <h3 style="margin: 15px"> PHYSCI 70: Intro to Digital Fabrication</h3>
+    <div class="navbar-nav">
+      <h4></h4>
+      <h4><a class="nav-link" href="../index.html">Home</a></h4>
+      <h4><a class="nav-link" href="../about.html">About</a></h4>
+    </div>
+  </div>
+</nav>
+
+<body>
+
+
+<xmp theme="journal" style="display:none;">
+
+  This week, naturally following from last, we worked with electrical output devices.
+
+  If we want to create dynamic, complex, and interesting machines, we not only need to be able to take in data about the environment, but we also must be able to act upon the environment based on that data.
+  
+  This is where electrical output devices come into play. Output devices come in a variety of options. They include light in the form of LEDs and lasers; motion in the form of motors, solenoids, actuators, and buzzers; fluids in the form of valves, fans, and pumps; along with other devices such as speakers, electromagnetics, etc.
+  
+  ![example outputs](./examples.jpg)
+
+  The goal of the assignment is to pair one input device with one new output device, which I have never used before, using a microcontroller program. 
+  
+  The first output device I tried using was a solenoid
+  Converts electromagnetic into linear force 
+  Fast but not a tremendous amount of force
+  Also used in a lot of valves and such
+  
+  ![solenoid](./solenoid.gif)
+  
+  Solenoids are tricky because they can draw a lot of currents and can sometimes provide kickback current through the circuit which can burn out the circuit if not appropriately set up.
+  
+  I attempted to follow this tutorial on creating a circuity setup to account for potential kickback and safely use: https://www.youtube.com/watch?v=RfrDtAEQ95c&ab_channel=100%25inform%C3%A1tica
+  
+  This required the use of a MOSFET, a diode, and two resistors.
+  
+  ![component labeling](./components.jpeg)
+  ![circuit setup](./solsetup.jpeg)
+  
+  From there, I wrote a simple Arduino sketch to pulse the actuator on and off in half second intervals.
+
+  Unfortunately, this did not end up working as intended and the solenoid did not activate accordingly. I hypothesized that the Arduino did not provide enough voltage or current to properly activate the solenoid as I felt some resistance on the rod when the solenoid was in its activated pulse. Not wanting to mess around with integrating an external power supply at the moment–I decided to pivot to working with another external device. 
+  
+  (This would prove to be futile in the end as that also required an external power supply to drive, so my attempt to reduce work for myself resulted in the opposite.)
+  
+  ![component labeling](./voltage.jpg)
+
+  [pictured above, the yellow figure was not pushing hard enough for the solenoid to work properly]
+
+
+  <b>Time to pivot!</b>
+
+
+  The electrical output device I will actually be using is a stepper motor. I have used a DC motor before; however, I have never used a stepper motor. While they are both motors, there are key differences that set them apart. 
+  
+  Here is the one difference I find most significant for my purposes quoted from Christian Cavallo (source: https://www.thomasnet.com/articles/machinery-tools-supplies/stepper-motors-vs-dc-motors/) 
+  
+  “Stepper motors provide their maximum torque at low speeds, which makes them especially useful in high precision, holding applications such as robotics and 3D printers. Some DC motors also generate high torques at low speeds, but are more suited towards continuous uses, as their torque is constant over their speed range. The main difference is that, while stepper motors can push harder from rest, DC motors tend to have more sustained output.”
+  
+  In short, it would be useful for me to learn more about stepper motors as I will most likely need stepper motors for my final project in order to obtain precision with my drawing/painting machine.
+  
+  For the electrical input device I will be pairing with, I chose the light sensor from last week.
+  
+  My goal is to create a program that causes the stepper motor to spin in a set order indefinitely unless the light sensor readings drop below a certain threshold at which point the order will pause until light returns.
+  
+  To do so, you cannot control a stepper motor directly with a microcontroller. Instead, you have to use a dedicated driver for each motor. I used the A4988 driver and followed the wiring diagram on this page: https://www.pololu.com/product/1182
+  
+  ![wire diagram](./diagram.jpg)
+  ![wire physical](./wiring.jpeg)
+  
+  One thing to note is the requirement of an external power supply. The A4988 driver specifies at least 8V to power the motor, so I was required to solder 9V power jack to provide the necessary voltage. It is very important to be careful with the wiring and to not connect the power and ground supplied by the 9V source to the microcontroller, which will end up frying the board.
+  
+  From there, it was a matter of pulsing the step pin of the motor driver to spin the stepper motor!
+  
+  ![spinning stepper motor](./spin.gif)
+  
+  Integrating the photoresistor was quite straightforward. All I had to do was set up the photoresistor as I did in the previous week and program the Arduino code.
+  
+  One thing to note is that I no longer use the delay() functionality to at time spacing between lines of code. This is because delay() is an active wait which means that the Arduino does nothing but wait while the delay is on. This is poor practice as it prevents behaviors from happening simultaneously. As such, I followed this tutorial to program with millis() instead: https://learn.adafruit.com/multi-tasking-the-arduino-part-1/ditch-the-delay
+  
+  <pre>
+    <code>
+const int stepPin = 12;
+const int dirPin = 13;
+
+unsigned long previousMillis;
+unsigned long currentMillis;
+
+int set_delay = 5;
+int state = LOW;
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+
+  pinMode(stepPin, OUTPUT);
+  pinMode(dirPin, OUTPUT);
+
+  digitalWrite(dirPin, LOW);
+
+  previousMillis = 0;
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  int analogValue = analogRead(A0);
+  currentMillis = millis();
+  digitalWrite(dirPin, HIGH);
+
+  if (state == LOW && analogValue > 1800 && currentMillis - previousMillis > set_delay){
+    digitalWrite(stepPin, HIGH);
+    previousMillis = currentMillis;
+    state = HIGH;
+  }
+  else if (state == HIGH && analogValue > 1800 && currentMillis - previousMillis > set_delay){
+    digitalWrite(stepPin, LOW);
+    previousMillis = currentMillis;
+    state = LOW;
+  }
+  
+  Serial.print("Analog reading: ");
+  Serial.println(analogValue);   // the raw analog reading
+}
+  </code>
+  </pre>
+  
+  And this is the final result!
+  
+  ![spinning and stopping stepper motor](./final.gif)
+  
+  
+</xmp>
+</body>
+
+<script src="https://strapdownjs.com/v/0.2/strapdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<title>PHYSCI 70: Intro to Digital Fabrication </title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../style.css" rel="stylesheet">
+
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div style="align-items: left; justify-content:left;" class="container-fluid">
+    <h3 style="margin: 15px"> PHYSCI 70: Intro to Digital Fabrication</h3>
+    <div class="navbar-nav">
+      <h4></h4>
+      <h4><a class="nav-link" href="../index.html">Home</a></h4>
+      <h4><a class="nav-link" href="../about.html">About</a></h4>
+    </div>
+  </div>
+</nav>
+
+<body>
+
+
+<xmp theme="journal" style="display:none;">
+
+  This week, we worked with Machine Building and End Effectors.
+
+  In essence, this centered around creating machines with controlled motion (usually through stepper motors). This introduces a lot of complexities such as converting the angular motion of the rotating motor into linear motion within a machine, homing the machine so that the motor is actually where we want it to be, working with the different step modes of a specific motor and changing the mode depending on the speeds and precision you need, etc.
+  
+  ![machine](./machine.jpg) 
+
+  The assignment is to build a simple machine with at least one stepper motor and try to get repeatable behavior (as one would always hope for).
+  
+  I am planning on using Nathan’s Wooden Machine Kit to create an H-bot drawing machine that operates quite ingeniously on two stepper motors.
+  
+  When the rotation of the stepper motors is in the same direction, there is translation on the x-axis. When there is rotation in opposite directions, there is translation on the y-axis.
+  
+  ![nathan h-bot](./nathan.png) 
+  ![machine](./1.jpeg) 
+
+  https://nathanmelenbrink.github.io/ps70/12_machine/machines.html
+  
+  
+  This will be extremely important for my final project as I intend for this to be the main machine to convert paint strokes into actual real-life motion and drawings.
+  
+  I first started off by popping all the pieces out of the laser-cut plywood (with many splinters along the way). This was somewhat difficult as the lasercut wasn’t fully complete in some parts, so I had to be forceful and some filing and minor adjustment has to be done with handtools.
+  
+  ![machine](./2.jpeg) 
+  ![machine](./3.jpeg) 
+  
+  However, after reviewing the design, I decided that the laser cut kit was unnecessary for the H-bot functionality (my splinters were in vain). There were many notches that would be needed for the linear stage assembly but not for the H-bot. In addition, the spacing for the bearings seemed to close. As such, I converted to building the H-bot design mostly from scratch following Rob’s model
+  
+  https://kem406.github.io/hbot/
+  
+  ![machine](./rob.jpeg) 
+
+  I measured out some spaced marks, drilled, and attached bearings onto a large piece of sparewood in the lab:
+  
+  ![machine](./bearings.jpeg) 
+  
+  Then, I fashioned the middle component with four bearings out of popsicle sticks and a combination of screws, nuts, and bearings. I had to get creative and attach some cardboard to keep the structure rigid and add additional paper to get the surface flush to ensure the string runs along with the bearings.
+  
+  ![machine](./11.jpeg) 
+  ![machine](./12.jpeg) 
+  ![machine](./13.jpeg) 
+  ![machine](./14.jpeg) 
+
+  From there, I attached a string around all the bearings. Ideally, the string should have constant tension and provide smooth and repeatable rotation around the bearings. A good choice would be tire tracks; however, there were not enough tire track bearings left, so we must do with what we have. To supplement, I later connected the string with a spring so the tension kept the string tight around the bearings. I also wrapped the stepper motor attachment with rubber bands, so it was actually able to grip and rotate the string. Tiny, hacky adjustments like these were what enabled my H-bot to actually work despite its imperfect fabrication.
+  
+
+  ![machine](./rubber.jpeg) 
+  ![machine](./assemble.jpeg) 
+
+  Now came the matter of driving the motor. To do so, I used the Huzzah microcontroller along with two A4988 motor drivers–one for each motor. I followed the instructions of the wiring diagram as with the wiring with Week 7. The only addition is doubling the setup and sharing the power and ground from the external power supply.
+  
+  ![machine](./spin.gif) 
+  
+  To finish things off, I attached the motors to the assembly and wrote a simple Arduino program that moved the motors in opposite directions, then switched after a few seconds. This results in y-axis movement back and forth.
+  
+  Ta-dah!
+  
+  <gif of final up and down>
+  ![machine](./final.gif) 
+
+
+</xmp>
+</body>
+
+<script src="https://strapdownjs.com/v/0.2/strapdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+
+</html>

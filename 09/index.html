@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<title>PHYSCI 70: Intro to Digital Fabrication </title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../style.css" rel="stylesheet">
+
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div style="align-items: left; justify-content:left;" class="container-fluid">
+    <h3 style="margin: 15px"> PHYSCI 70: Intro to Digital Fabrication</h3>
+    <div class="navbar-nav">
+      <h4></h4>
+      <h4><a class="nav-link" href="../index.html">Home</a></h4>
+      <h4><a class="nav-link" href="../about.html">About</a></h4>
+    </div>
+  </div>
+</nav>
+
+<body>
+
+
+<xmp theme="journal" style="display:none;">
+
+  This week, we worked with networking and the Internet of Things, primarily focusing on Wifi and Bluetooth.
+
+  ![wireless](./wifi.gif) 
+
+  <b>Gone are the ages of wires!</b> Well–not really, we will always have a lot of wires, and they are extremely important. However, a lot of current-day technology relies on wireless technology. It would simply be inconvenient if all our data transfer and communications relied on a physical wired connection. This is where the beauty of radio, wifi, and Bluetooth comes in.
+
+  Honestly, I  believe all of this is still magic, but we will trudge on and I will suspend my disbelief in this “science” which is definitely not “witchcraft.” For this assignment, I will be remotely controlling a motor wirelessly. This would help with the future development of my final project as ideally the drawing/painting machine would be controlled remotely, at least that would be more convenient.
+
+  To do so, at the advice of Michael, I followed this Random Nerd Tutorial: https://randomnerdtutorials.com/esp32-servo-motor-web-server-arduino-ide/
+
+  ![thinker](./servo.gif) 
+
+  …
+
+  ...
+
+  ...
+
+  ....
+
+  Well… in theory. 
+
+  It should have been a simple procedure of wiring the ESP32 with the servo motor and then creating a WebSocket to communicate with the ESP which will send the direct instruction to the servo. The crux of this is the WebSocket which can be accessed as long as one is on the same WiFi as the ESP. 
+
+  In practice, I was not even able to set up the most basic WebSocket from the Arduino example code of SimpleWiFiServer. All the ESP 32 libraries are installed, no compilation or uploading errors, nothing wrong I was able to troubleshoot.
+
+  All I got were archaic messages–possibly from a lost civilization trying to contact me. Regrettably, I have no archaeological interest and my only desire in life is to simply control a servo motor from 3 feet away.
+
+  ![strange symbols](./symbols.jpeg) 
+
+  However, I could not leave this assignment with such an unsatisfying conclusion, so I did my best reenactment of what the final result would have been if the wireless magic deities have not forsaken me:
+
+  <insert video of my reenactment>
+
+  <video width="640" height="480" controls>
+    <source src="reinact.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  
+  Perhaps communication is subjective. 
+
+  Humans are not wires, so would I be considered wireless communication?
+
+  Such a strange world we live in.
+
+  Maybe the line between what is technology and what is not is more blurred than we believe.
+
+  Maybe we come into this class to learn about digital fabrication, but what we really learn is that there is no substitute for not fabricating yourself and being true to yourself.
+
+  Maybe I am sitting in room 102 at 1:20 AM with my brain fried the night after we finished the final presentations.
+
+  The truth remains as elusive as ever.
+
+  ![thinker](./thinker2.jpg) 
+
+</xmp>
+</body>
+
+<script src="https://strapdownjs.com/v/0.2/strapdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+
+</html>

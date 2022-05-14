@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<title>PHYSCI 70: Intro to Digital Fabrication </title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../style.css" rel="stylesheet">
+
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div style="align-items: left; justify-content:left;" class="container-fluid">
+    <h3 style="margin: 15px"> PHYSCI 70: Intro to Digital Fabrication</h3>
+    <div class="navbar-nav">
+      <h4></h4>
+      <h4><a class="nav-link" href="../index.html">Home</a></h4>
+      <h4><a class="nav-link" href="../about.html">About</a></h4>
+    </div>
+  </div>
+</nav>
+
+<body>
+
+
+<xmp theme="journal" style="display:none;">
+
+This week, we worked on more computer programming.
+
+Specifically, our assignment was to send data to our computer and write code to visualize the data we receive.
+
+First, I got some more input data to work with. As such, I went back to my trusty light sensor for some analog data, setting up a serial monitor to output the data.
+
+However, it is not possible for any p5 application to directly read data from the serial port of your computer. Instead, one must set up proxies to read the serial port and act as a data middleman to communicate information from the microcontroller. To do this I primarily followed along with this guide to….
+
+https://itp.nyu.edu/physcomp/labs/labs-serial-communication/lab-serial-input-to-the-p5-js-ide/
+
+I immediately ran into a roadblock by not being able to use the serial port library from the guide. The MacOS flags the application due to it being an unknown source and prevented me from using it. An application such as SerialPort makes sense to be flagged as it directly reads from the serial port, and the whole reason why most applications are prevented from reading straight from the serial port is for, I presume, security concerns.
+
+![error](./suss.png) 
+ 
+Though it is possible to disable this security feature and whitelist the program. It seems that flagrantly ignoring security warnings in exchange for convenience while under a time crunch is a bad habit to build. So, out of principle, I decided to go for an alternative route. 
+
+The prompt for this week’s assignment is simply: “Send data to a computer and write code to display results.“ Being able to transfer data and visualize it from a microcontroller in real-time is very useful; however, I believe that there are more situations where real-time data is not necessary. Instead, there are more uses where data is recorded, stored, and then separately visualized and analyzed. 
+
+I decided to go this route. I converted the analog output in the serial monitor into a txt file and then into a CSV file.
+
+From there, I used Python to construct a visualization with the Seaborn visualization library.
+
+[Finish when you complete python code]
+
+</xmp>
+</body>
+
+<script src="https://strapdownjs.com/v/0.2/strapdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+
+</html>
